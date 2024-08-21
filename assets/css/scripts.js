@@ -365,180 +365,180 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* Osbługa Felg -> filtry */
 
-document.addEventListener('DOMContentLoaded', function() {
-    function toggleSection(element) {
-        const content = element.nextElementSibling;
-        const isActive = element.classList.toggle('active');
-        content.style.display = isActive ? 'block' : 'none';
-    }
+// document.addEventListener('DOMContentLoaded', function() {
+//     function toggleSection(element) {
+//         const content = element.nextElementSibling;
+//         const isActive = element.classList.toggle('active');
+//         content.style.display = isActive ? 'block' : 'none';
+//     }
 
-    function collapseAllBut(element, selector) {
-        document.querySelectorAll(selector).forEach(function(item) {
-            if (item !== element) {
-                item.classList.remove('active');
-                item.nextElementSibling.style.display = 'none';
-            }
-        });
-    }
+//     function collapseAllBut(element, selector) {
+//         document.querySelectorAll(selector).forEach(function(item) {
+//             if (item !== element) {
+//                 item.classList.remove('active');
+//                 item.nextElementSibling.style.display = 'none';
+//             }
+//         });
+//     }
 
-    function collapseSubSections(section) {
-        const subSections = section.querySelectorAll('.sub-collapsible');
-        subSections.forEach(function(subSection) {
-            subSection.classList.remove('active');
-            subSection.nextElementSibling.style.display = 'none';
-        });
-    }
+//     function collapseSubSections(section) {
+//         const subSections = section.querySelectorAll('.sub-collapsible');
+//         subSections.forEach(function(subSection) {
+//             subSection.classList.remove('active');
+//             subSection.nextElementSibling.style.display = 'none';
+//         });
+//     }
 
-    function initCollapsible(selector, parentSelector) {
-        document.querySelectorAll(selector).forEach(function(element) {
-            element.addEventListener('click', function(event) {
-                event.stopPropagation();
+//     function initCollapsible(selector, parentSelector) {
+//         document.querySelectorAll(selector).forEach(function(element) {
+//             element.addEventListener('click', function(event) {
+//                 event.stopPropagation();
 
-                collapseAllBut(element, parentSelector);
-                toggleSection(element);
+//                 collapseAllBut(element, parentSelector);
+//                 toggleSection(element);
 
-                // Zamknij wszystkie podsekcje, gdy klikniesz w inny collapsible
-                if (selector === '.collapsible') {
-                    collapseSubSections(element.nextElementSibling);
-                }
-            });
-        });
-    }
+//                 // Zamknij wszystkie podsekcje, gdy klikniesz w inny collapsible
+//                 if (selector === '.collapsible') {
+//                     collapseSubSections(element.nextElementSibling);
+//                 }
+//             });
+//         });
+//     }
 
-    // Inicjalizuj dla sekcji głównych i podsekcji
-    initCollapsible('.collapsible', '.collapsible');
-    initCollapsible('.sub-collapsible', '.content .sub-collapsible');
+//     // Inicjalizuj dla sekcji głównych i podsekcji
+//     initCollapsible('.collapsible', '.collapsible');
+//     initCollapsible('.sub-collapsible', '.content .sub-collapsible');
 
-    // Obsługa ikony filtra dla mobile (<=1024px)
-    document.querySelector('.filter-icon').addEventListener('click', function() {
-        const filterMenu = document.querySelector('.filter-menu');
-        const isMenuVisible = filterMenu.style.display === 'block';
-        filterMenu.style.display = isMenuVisible ? 'none' : 'block';
-    });
+//     // Obsługa ikony filtra dla mobile (<=1024px)
+//     document.querySelector('.filter-icon').addEventListener('click', function() {
+//         const filterMenu = document.querySelector('.filter-menu');
+//         const isMenuVisible = filterMenu.style.display === 'block';
+//         filterMenu.style.display = isMenuVisible ? 'none' : 'block';
+//     });
 
-    // Ukryj menu filtra i ustaw style dla desktopu, pokazuj dla mobile
-    function handleResize() {
-        const filterMenuContainer = document.querySelector('.filter-menu-container');
-        if (window.innerWidth > 1024) {
-            filterMenuContainer.style.display = 'none'; // Ukryj menu dla desktopu
-        } else {
-            filterMenuContainer.style.display = 'block'; // Pokaż menu dla mobile
-        }
-    }
+//     // Ukryj menu filtra i ustaw style dla desktopu, pokazuj dla mobile
+//     function handleResize() {
+//         const filterMenuContainer = document.querySelector('.filter-menu-container');
+//         if (window.innerWidth > 1024) {
+//             filterMenuContainer.style.display = 'none'; // Ukryj menu dla desktopu
+//         } else {
+//             filterMenuContainer.style.display = 'block'; // Pokaż menu dla mobile
+//         }
+//     }
 
-    window.addEventListener('resize', handleResize);
-    handleResize(); // Uruchom przy starcie, aby ustawić odpowiedni stan
-});
+//     window.addEventListener('resize', handleResize);
+//     handleResize(); // Uruchom przy starcie, aby ustawić odpowiedni stan
+// });
 
 /* Osbługa Felg -> produkty */
 
-document.addEventListener("DOMContentLoaded", function() {
-    const wheels = [
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-        { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
-    ];
+// document.addEventListener("DOMContentLoaded", function() {
+//     const wheels = [
+//         { imgSrc: "/assets/images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "/assets/images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "/assets/images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "/assets/images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "/assets/images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "/assets/images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "/assets/images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "/assets/images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "/assets/images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "/assets/images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//         { imgSrc: "images/example1.svg", title: "R17 Dezent KS Graphite 7.0''", description: ["Mazda 6 CX3", "Mazda 6 CX3", "Mazda 6 CX3"] },
+//     ];
 
-    const itemsPerPage = 36;
-    const paginationElement = document.getElementById('pagination');
-    const wheelsElement = document.getElementById('wheels');
-    let currentPage = 1;
+//     const itemsPerPage = 36;
+//     const paginationElement = document.getElementById('pagination');
+//     const wheelsElement = document.getElementById('wheels');
+//     let currentPage = 1;
 
-    function renderWheels(page) {
-        wheelsElement.innerHTML = '';
-        const start = (page - 1) * itemsPerPage;
-        const end = start + itemsPerPage;
-        const itemsToShow = wheels.slice(start, end);
+//     function renderWheels(page) {
+//         wheelsElement.innerHTML = '';
+//         const start = (page - 1) * itemsPerPage;
+//         const end = start + itemsPerPage;
+//         const itemsToShow = wheels.slice(start, end);
 
-        itemsToShow.forEach(item => {
-            const wheelDiv = document.createElement('div');
-            wheelDiv.classList.add('wheels-content-item');
-            wheelDiv.innerHTML = `
-                <div class="wheels-content-single">
-                    <img src="${item.imgSrc}" alt="${item.title}">
-                    <h5>${item.title}</h5>
-                    <div class="wheels-description">
-                        ${item.description.map(desc => `<p>${desc}</p>`).join('')}
-                    </div>
-                </div>
-            `;
-            wheelsElement.appendChild(wheelDiv);
-        });
-    }
+//         itemsToShow.forEach(item => {
+//             const wheelDiv = document.createElement('div');
+//             wheelDiv.classList.add('wheels-content-item');
+//             wheelDiv.innerHTML = `
+//                 <div class="wheels-content-single">
+//                     <img src="${item.imgSrc}" alt="${item.title}">
+//                     <h5>${item.title}</h5>
+//                     <div class="wheels-description">
+//                         ${item.description.map(desc => `<p>${desc}</p>`).join('')}
+//                     </div>
+//                 </div>
+//             `;
+//             wheelsElement.appendChild(wheelDiv);
+//         });
+//     }
 
-    function renderPagination() {
-        paginationElement.innerHTML = '';
-        const totalPages = Math.ceil(wheels.length / itemsPerPage);
+//     function renderPagination() {
+//         paginationElement.innerHTML = '';
+//         const totalPages = Math.ceil(wheels.length / itemsPerPage);
 
-        for (let i = 1; i <= totalPages; i++) {
-            const button = document.createElement('button');
-            button.textContent = i;
-            if (i != currentPage) {
-                button.classList.add('disabled');
-            }
-            button.addEventListener('click', function() {
-                currentPage = i;
-                renderWheels(currentPage);
-                renderPagination();
+//         for (let i = 1; i <= totalPages; i++) {
+//             const button = document.createElement('button');
+//             button.textContent = i;
+//             if (i != currentPage) {
+//                 button.classList.add('disabled');
+//             }
+//             button.addEventListener('click', function() {
+//                 currentPage = i;
+//                 renderWheels(currentPage);
+//                 renderPagination();
 
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-            paginationElement.appendChild(button);
-        }
-    }
+//                 window.scrollTo({
+//                     top: 0,
+//                     behavior: 'smooth'
+//                 });
+//             });
+//             paginationElement.appendChild(button);
+//         }
+//     }
 
-    renderWheels(currentPage);
-    renderPagination();
-});
+//     renderWheels(currentPage);
+//     renderPagination();
+// });
 
